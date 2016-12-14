@@ -28,6 +28,7 @@ You should assign a port of your localhost to make webapp to run. By default, we
 ::
 
     cd webapp
+    python manage.py migrate
     python manage.py runserver 8000
 
 Config spider_project
