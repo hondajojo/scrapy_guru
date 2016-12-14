@@ -6,6 +6,7 @@ from scrapy.http.request import Request
 from ..items import SpiderProjectItem
 
 from six.moves.urllib import parse
+import re
 
 
 class Basic_extractSpider(scrapy.Spider):
@@ -21,9 +22,10 @@ class Basic_extractSpider(scrapy.Spider):
     taskid and entry only make sense in this project.
 
     """
-    taskid = "basic_extract"
+    taskid = "regex_extract"
     name = taskid
-    entry = "content/detail_basic"
+    entry = "content/detail_regex"
+    js_entry = "/static/js/content/detail_regex.js"
 
     def start_requests(self):
         """
@@ -49,7 +51,7 @@ class Basic_extractSpider(scrapy.Spider):
         )
         # Generate start url from config and self.entry, when you paste the code
         # to another spider you can just change self.entry and self.taskid
-        url = parse.urljoin(base_url, self.entry)
+        url = parse.urljoin(base_url, self.js_entry)
         yield Request(
             url=url,
             callback=self.parse_entry_page
@@ -67,11 +69,10 @@ class Basic_extractSpider(scrapy.Spider):
         item = SpiderProjectItem()
         item["taskid"] = self.taskid
         data = {}
-        title = response.xpath("//div[@class='product-title']/text()").extract()
-        desc = response.xpath(
-            "//section[@class='container product-info']//li/text()").extract()
-        data["title"] = title
-        data["desc"] = desc
+        r = re.findall(r'var\sdata\s=\s(.*?);', response.text, re.S)
+        json_data = json.loads(r[0])
+        data["title"] = json_data['title']
+        data["price"] = json_data['price']
 
         item["data"] = data
         yield item

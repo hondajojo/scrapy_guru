@@ -12,9 +12,11 @@ import logging
 
 import scrapy
 from scrapy.utils.serialize import ScrapyJSONEncoder
+
 _encoder = ScrapyJSONEncoder()
 
 logger = logging.getLogger('SpiderProjectPipeline')
+
 
 def compare_single(item_json, json_data):
     """
@@ -31,6 +33,7 @@ def compare_single(item_json, json_data):
             if item_json_data[key] != value:
                 output.append(key)
     return output
+
 
 class SpiderProjectPipeline(object):
     def process_item(self, item, spider):
@@ -62,7 +65,7 @@ class SpiderProjectPipeline(object):
                 raise Exception("sku lost in item returned by spider")
 
             target_json_data = filter(
-                lambda x:x["data"]["sku"] == item["data"]["sku"], json_data)
+                lambda x: x["data"]["sku"] == item["data"]["sku"], json_data)
             if not target_json_data:
                 raise Exception("sku wrong value, please check the doc")
             target_json_data = target_json_data[0]
@@ -76,4 +79,3 @@ class SpiderProjectPipeline(object):
 
         logger.info(60 * "=")
         return item
-
