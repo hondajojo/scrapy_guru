@@ -4,22 +4,23 @@
 {% block jslink %}
 <script>
 requirejs(['content/list_basic']);
+
 </script>
 {% endblock %}
 
 {% block content %}
 
 <div class="container-fluid">
-<div class="row">
-    <div class="col-md-12">
-        <table class="table table-bordered table-hover">
-            <thead>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table-hover">
+                <thead>
                 <tr>
                     <th class="col-sm-2">title</th>
                     <th class="col-sm-10">description</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 {% for info in filter_ls%}
                 <tr>
                     <td>
@@ -28,19 +29,23 @@ requirejs(['content/list_basic']);
                     <td>{{ info.description_text | safe }}</td>
                 </tr>
                 {% endfor %}
-            </tbody>
-        </table>
+                </tbody>
+            </table>
 
-        <nav>
-            <ul id="pagination" class="pagination">
+            <nav>
+                <ul id="pagination" class="pagination">
 
-            </ul>
-        </nav>
+                </ul>
+            </nav>
 
+        </div>
     </div>
-</div>
     <script id="page_data" type="application/json">
-        {{ page_json|safe }}
+        {{
+            page_json
+            |
+            safe
+        }}
     </script>
 </div>
 
