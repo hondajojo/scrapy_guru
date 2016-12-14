@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+http://scrapy-guru.readthedocs.io/en/latest/tasks/list_extract_pagination.html
+"""
 import json
 
 import scrapy

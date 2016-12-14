@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+http://scrapy-guru.readthedocs.io/en/latest/tasks/ajax_sign.html
+"""
 import json
 
 import scrapy

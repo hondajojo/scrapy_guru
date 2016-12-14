@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+http://scrapy-guru.readthedocs.io/en/latest/tasks/json_extract.html
+"""
 import json
 
 import scrapy

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-import json
-
+"""
+http://scrapy-guru.readthedocs.io/en/latest/tasks/basic_extract.html
+"""
 import scrapy
 from scrapy.http.request import Request
 from ..items import SpiderProjectItem

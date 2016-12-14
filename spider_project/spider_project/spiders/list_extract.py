@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-import json
+"""
+http://scrapy-guru.readthedocs.io/en/latest/tasks/list_extract.html
+"""
 
 import scrapy
 from scrapy.http.request import Request
