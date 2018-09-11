@@ -8,9 +8,13 @@ import string
 
 from django.conf import settings
 from django.core.cache import cache
-from django.http import JsonResponse, HttpResponseForbidden, HttpResponse
+from django.http import JsonResponse, HttpResponseForbidden, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import loader
+
+
+def error_handler(request):
+    return HttpResponseRedirect('/')
 
 
 def index(request):

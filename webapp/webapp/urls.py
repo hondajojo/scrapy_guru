@@ -22,3 +22,4 @@ urlpatterns = [
     url(r'^content/', include('content.urls')),
     url(r'^$', content.views.index),
 ]
+
