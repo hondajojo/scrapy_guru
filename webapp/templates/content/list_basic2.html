@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% block title %}Products list{% endblock %}
+{% block jslink %}
+<script>
+requirejs(['content/list_basic']);
+
+
+
+</script>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th class="col-sm-2">任务链接</th>
+                    <th class="col-sm-10">抓取字段</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <a target="_blank" href="{% url 'detail_basic' %}">基本html解析</a>
+                    </td>
+                    <td>标题，描述，价格</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a target="_blank" href="{% url 'detail_json' %}">json解析</a>
+                    </td>
+                    <td>标题，描述，价格</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a target="_blank" href="{% url 'detail_ajax' %}">ajax解析1</a>
+                    </td>
+                    <td>标题，描述，价格</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a target="_blank" href="{% url 'detail_header' %}">ajax解析2</a>
+                    </td>
+                    <td>标题，描述，价格</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a target="_blank" href="{% url 'detail_cookie' %}">ajax解析3</a>
+                    </td>
+                    <td>标题，描述，价格</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a target="_blank" href="{% url 'detail_sign' %}">ajax解析4</a>
+                    </td>
+                    <td>标题，描述，价格</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a target="_blank" href="{% url 'detail_regex' %}">正则解析</a>
+                    </td>
+                    <td>标题，描述，价格</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a target="_blank" href="{% url 'list_basic' 1 %}">列表解析加翻页</a>
+                    </td>
+                    <td>列表标题，列表描述</td>
+                </tr>
+                </tbody>
+            </table>
+            <img src="{% static 'img/hm_4.png' %}" width="600" height="300" />
+
+            <nav>
+                <ul id="pagination" class="pagination">
+
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

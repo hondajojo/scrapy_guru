@@ -1,15 +1,23 @@
-import random
-import string
+# codinh:utf8
 import hashlib
 import json
 import os.path
+import random
 import re
+import string
 
-from django.http import JsonResponse, HttpResponseForbidden, HttpResponse
-from django.shortcuts import render, render_to_response
-from django.core.cache import cache
 from django.conf import settings
+from django.core.cache import cache
+from django.http import JsonResponse, HttpResponseForbidden, HttpResponse
+from django.shortcuts import render_to_response
 from django.template import loader
+
+
+def index(request):
+    return render_to_response(
+        "content/list_basic2.html",
+    )
+
 
 def detail_basic(request):
     """
@@ -28,6 +36,7 @@ def detail_ajax(request):
         "content/detail_ajax.html",
     )
 
+
 def ajaxdetail(request):
     response = JsonResponse(
         {
@@ -36,7 +45,6 @@ def ajaxdetail(request):
         }
     )
     return response
-
 
 
 def detail_json(request):
@@ -55,6 +63,7 @@ def detail_header(request):
     return render_to_response(
         "content/detail_header.html",
     )
+
 
 def ajaxdetail_header(request):
     if not request.is_ajax():
@@ -78,6 +87,7 @@ def detail_cookie(request):
     resp = HttpResponse(template.render({}, request))
     resp.set_cookie("token", token, max_age=30)
     return resp
+
 
 def ajaxdetail_cookie(request):
     if not request.is_ajax():
@@ -113,6 +123,7 @@ def detail_sign(request):
     resp.set_cookie("token", token, max_age=30)
     return resp
 
+
 def ajaxdetail_sign(request):
     if not request.is_ajax():
         return HttpResponseForbidden()
@@ -141,6 +152,7 @@ def ajaxdetail_sign(request):
     )
     return response
 
+
 def list_basic(request, page):
     pagenum = int(page)
     num = pagenum - 1
@@ -151,7 +163,7 @@ def list_basic(request, page):
     )
     filter_ls = ls[start_index:end_index + 1]
 
-    #change url
+    # change url
     for info in filter_ls:
         url = info["url"]
         sku = re.findall("productpage.(\d+).html", url)[0]
@@ -172,6 +184,7 @@ def list_basic(request, page):
         context,
     )
 
+
 def list_basic_detail(request, sku):
     ls = json.loads(
         open(os.path.join(settings.BASE_DIR, "content/data/ls.json"), "r").read()
@@ -184,36 +197,3 @@ def list_basic_detail(request, sku):
         'content/list_basic_detail.html',
         context,
     )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
